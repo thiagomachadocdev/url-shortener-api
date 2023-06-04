@@ -1,14 +1,12 @@
-import prisma from './prisma'
+import prisma from '../../configs/prisma'
 
 interface Data {
-  originalUrl: string
   slug: string
 }
 
 const model = async (data: Data) => {
-  const url = await prisma.url.create({
-    data: {
-      originalUrl: data.originalUrl,
+  const url = await prisma.url.findUnique({
+    where: {
       slug: data.slug,
     },
   })
